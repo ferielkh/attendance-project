@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Management</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#attendance">Attendance List</a></li>
+<li><a href="#add-student">Add Student</a></li>
+<li><a href="#report-section">Reports</a></li>
+</ul>
+</nav>
+
+<!-- Home -->
+<section id="home" class="active">
+<h2 class="green-heading">🌿 Welcome to the Attendance Management System 🌿</h2>
+<p style="text-align:center;">Use the navigation bar to manage students, take attendance, and view reports.</p>
+</section>
+
+<!-- Attendance Table -->
+<section id="attendance">
+<h2 class="green-heading">🌿 Attendance List 🌿</h2>
+
+<div class="search-sort-container">
+  <label><strong>Search Student:</strong> 
+    <input type="text" id="searchName" placeholder="Enter first or last name">
+  </label>
+  <button id="sortAbs">Sort by Absences</button>
+  <button id="sortPa">Sort by Participation</button>
+</div>
+
+<div id="tableMsg">✅ New student added to the attendance table!</div>
+<div id="sortMsg"></div>
+
+<table id="attendance-table">
+<thead>
+<tr>
+<th rowspan="2">Student ID</th>
+<th rowspan="2">Last Name</th>
+<th rowspan="2">First Name</th>
+<th rowspan="2">Course</th>
+<th colspan="2">Session 1</th>
+<th colspan="2">Session 2</th>
+<th colspan="2">Session 3</th>
+<th colspan="2">Session 4</th>
+<th colspan="2">Session 5</th>
+<th colspan="2">Session 6</th>
+<th rowspan="2">Abs</th>
+<th rowspan="2">Pa</th>
+<th rowspan="2">Message</th>
+</tr>
+<tr>
+<th>P</th><th>Pa</th><th>P</th><th>Pa</th><th>P</th><th>Pa</th>
+<th>P</th><th>Pa</th><th>P</th><th>Pa</th><th>P</th><th>Pa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>785412</td><td>Feriel</td><td>Khoukhi</td><td>PAW</td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td class="absences">0</td><td class="participations">0</td><td class="message"></td>
+</tr>
+<tr>
+<td>821697</td><td>sarah</td><td>khecha</td><td>PAW</td> 
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td class="absences">0</td><td class="participations">0</td><td class="message"></td>
+</tr> 
+<tr>
+<td>136054</td><td>yacine</td><td>ali</td><td>PAW</td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td class="absences">0</td><td class="participations">0</td><td class="message"></td>
+</tr>
+<tr>
+<td>916870</td><td>hocine</td><td>rania</td><td>PAW</td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td><input type="checkbox" class="p"></td><td><input type="checkbox" class="pa"></td>
+<td class="absences">0</td><td class="participations">0</td><td class="message"></td>
+</tr>
+</tbody>
+</table>
+
+<br>
+<button id="checkBtn">Update Attendance</button>
+<button id="highlightBtn">Highlight Excellent Students</button>
+<button id="resetBtn">Reset Highlight</button>
+</section>
+
+<!-- Add Student -->
+<section id="add-student">
+<h2 class="green-heading">🌿 Add New Student 🌿</h2>
+<form id="addStudentForm" action="process_student.php" method="post" style="text-align:center;">
+<label>Student ID:</label><br>
+<input type="text" id="studentID"><br>
+<small id="error-id"></small>
+
+<label>Last Name:</label><br>
+<input type="text" id="lastName"><br>
+<small id="error-last"></small>
+
+<label>First Name:</label><br>
+<input type="text" id="firstName"><br>
+<small id="error-first"></small>
+
+<label>Email:</label><br>
+<input type="email" id="email"><br>
+<small id="error-email"></small>
+
+<button type="submit" id="addBtn">Add Student</button>
+<small id="success-msg"></small>
+</form>
+</section>
+
+<!-- Report -->
+<section id="report-section">
+<h2 class="green-heading">🌿 Attendance Report 🌿</h2>
+<canvas id="reportChart"></canvas>
+<div id="perfectAttendance"></div>
+<button id="reportBtn">Show Report</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

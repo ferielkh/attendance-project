@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Attendance — Exercise 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background-color: #f9f9f9;
+      scroll-behavior: smooth;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 900px;
+      background-color: white;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    thead th {
+      background: #f4f4f4;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.1);
+    }
+
+    button {
+      background-color: darkgreen;
+      color: white;
+      margin-top: 15px;
+      display: block;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2b6a4a;
+    }
+
+    .navbar {
+      background-color: #2b6a4a;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+/* ========== MOBILE FIRST (Default styles) ========== */
+/* You already wrote your normal CSS — that’s your mobile version */
+
+/* ========== FOR TABLETS (width ≥ 768px) ========== */
+@media (min-width: 768px) {
+  body {
+    margin: 40px;
+  }
+
+  table {
+    width: 90%;
+  }
+
+  .navbar ul {
+    gap: 40px;
+  }
+
+  th, td {
+    padding: 12px;
+  }
+}
+
+/* ========== FOR DESKTOPS (width ≥ 1024px) ========== */
+@media (min-width: 1024px) {
+  body {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  table {
+    font-size: 16px;
+  }
+
+  button {
+    width: 200px;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <h2>Exercise 1 — Student Attendance Table</h2>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#add student">Attendance List</a></li>
+      <li><a href="#add-student">Add Student</a></li>
+      <li><a href="#">Reports</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Attendance Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Course</th>
+        <th>Participated</th>
+        <th>Present</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>31353614</td>
+        <td>Sarah</td>
+        <td>Khecha</td>
+        <td>PAW</td>
+        <td><input type="checkbox" name="Participated"></td>
+        <td><input type="checkbox" name="Present"></td>
+      </tr>
+      <tr>
+        <td>313586753</td>
+        <td>Feriel</td>
+        <td>Khoukhi</td>
+        <td>PAW</td>
+        <td><input type="checkbox" name="Participated"></td>
+        <td><input type="checkbox" name="Present"></td>
+      </tr>
+      <tr>
+        <td>3135389974</td>
+        <td>Alex</td>
+        <td>Ford</td>
+        <td>PAW</td>
+        <td><input type="checkbox" name="Participated"></td>
+        <td><input type="checkbox" name="Present"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <!-- Add Student Section -->
+  <h2 id="add-student">Add New Student</h2>
+  <label>Student ID:</label> <input type="text" name="student ID"><br><br>
+  <label>Last Name:</label> <input type="text" name="last name"><br><br>
+  <label>First Name:</label> <input type="text" name="first name"><br><br>
+  <label>Email:</label> <input type="email" name="email"><br><br>
+  <section id="add student"><h2>add new student</h2></section>
+
+  <button type="submit">Submit</button>
+
+  <script>
+    const button = document.querySelector("button");
+
+    button.addEventListener("click", function() {
+      const id = document.querySelector('input[name="student ID"]').value;
+      const last = document.querySelector('input[name="last name"]').value;
+      const first = document.querySelector('input[name="first name"]').value;
+      const email = document.querySelector('input[name="email"]').value;
+
+      
+      if (!id || !last || !first) {
+        alert("Please fill in Student ID, Last Name, and First Name.");
+        return;
+      }
+
+      const tableBody = document.querySelector("tbody");
+      const newRow = document.createElement("tr");
+
+      
+      newRow.innerHTML =
+        "<td>" + id + "</td>" +
+        "<td>" + last + "</td>" +
+        "<td>" + first + "</td>" +
+        "<td>PAW</td>" +
+        "<td><input type='checkbox' name='Participated'></td>" +
+        "<td><input type='checkbox' name='Present'></td>";
+
+      tableBody.appendChild(newRow);
+
+      
+      document.querySelector('input[name="student ID"]').value = "";
+      document.querySelector('input[name="last name"]').value = "";
+      document.querySelector('input[name="first name"]').value = "";
+      document.querySelector('input[name="email"]').value = "";
+
+      alert("Student added successfully!");
+    });
+  </script>
+
+</body>
+</html>
+

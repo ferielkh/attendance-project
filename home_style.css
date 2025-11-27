@@ -1,0 +1,80 @@
+/* ====== GENERAL PAGE STYLE ====== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3f9f3;
+}
+
+/* ====== SIDEBAR ====== */
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background-color: #2e7d32; /* dark green */
+  padding: 20px;
+  box-sizing: border-box;
+  position: fixed;
+  color: white;
+}
+
+.sidebar h2 {
+  margin: 0 0 20px;
+  font-size: 22px;
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #1b5e20;
+}
+
+/* ====== MAIN CONTENT ====== */
+.main {
+  margin-left: 250px;
+  padding: 30px;
+}
+
+.header {
+  font-size: 26px;
+  font-weight: bold;
+  color: #1b5e20;
+  margin-bottom: 20px;
+}
+
+/* ====== DASHBOARD CARDS ====== */
+.card-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 250px;
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  transition: transform .2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  color: #2e7d32;
+}
+
+.card p {
+  margin: 0;
+  color: #333;
+  font-size: 15px;
+}
